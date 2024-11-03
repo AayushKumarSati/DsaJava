@@ -3,7 +3,7 @@ class Solution {
         // creating the three variable pointer
         int first = Integer.MAX_VALUE;// (+infinity)
         int second = Integer.MAX_VALUE;// (+infinity)
-        int third = Integer.MAX_VALUE;// (+infinity)
+        // int third = Integer.MAX_VALUE;// (+infinity)
         for (int i = 0; i < nums.length; i++) {
             // in value
             int ele = nums[i];
@@ -13,7 +13,7 @@ class Solution {
             } else if (second >= ele) {
                  second=ele;
             } else {
-                third = ele;
+                // third = ele;
                 return true;
 
             }
