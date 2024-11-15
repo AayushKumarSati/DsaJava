@@ -7,17 +7,16 @@ class Solution {
         int n = people.length;
         int start = 0, end = n - 1, count = 0;// count variable is count the number of boats required
         while (start <= end) {
-            // case 1:people[start]+people[end]>limit than
-            if (people[start] + people[end] > limit) {
-                count++;
-                end--;
-            }
-            // case 2:
-            else if (people[start] + people[end] <= limit) {
-                count++;
-                end--;
+            // case 1:
+            if (people[start] + people[end] <= limit) {
                 start++;
+                end--;
             }
+            // case 2:people[start]+people[end]>limit than
+            else {
+                end--;
+            }
+            count++;
         }
         return count;
     }
