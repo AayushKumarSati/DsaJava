@@ -29,6 +29,10 @@ class Solution {
                         start++;
 
                     }
+                    // Avoid duplicates for the 'end' pointer
+                    while (start < end && arr[end] == arr[end + 1]) {
+                        end--;
+                    }
                 }
 
             }
