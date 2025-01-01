@@ -1,23 +1,26 @@
 class Solution {
-    public List<List<String>> groupAnagrams(String[] strs) {
-        // Approach-1 (Using Sorting)
-        // T.C : O(n*klog(k)) (n = size of input, k = maximum length of a string in the
-        // input vector)
-        // S.C : O(n*k)
-        Map<String,List<String>>map=new HashMap<>();
-        for(String str:strs){
-            char[]arr=str.toCharArray();
-            Arrays.sort(arr);
-            String sortedstr=new String(arr);
-            if(!map.containsKey(sortedstr)){
-                map.put(sortedstr,new ArrayList<>());
-
-            }
-            map.get(sortedstr).add(str);
-
+    public List<List<String>> groupAnagrams(String[] arr) {
+        // this problem is solving by using the hashMap
+        // Time Complexity:O(n*mlogm)
+        // Space Complexity:O(n*m)
+        // because n=length of arrays and m=average length of string
+        List<List<String>> ans = new ArrayList<>();
+        HashMap<String, List<String>> hm = new HashMap<>();
+        // traverse the array and firstly sort array
+        // and than add Values in the HashMap
+        for (String ele : arr) {
+            char[] temp = ele.toCharArray();
+            Arrays.sort(temp);
+            String str = new String(temp);
+            // if the String not present in the HashMap
+            hm.putIfAbsent(str, new ArrayList<>());
+            hm.get(str).add(ele);
         }
-        return new ArrayList<>(map.values());
-        
+        // finally add all values in the ans
+        for (List<String> ele : hm.values()) {
+            ans.add(ele);
+        }
+        return ans;
 
     }
 }
