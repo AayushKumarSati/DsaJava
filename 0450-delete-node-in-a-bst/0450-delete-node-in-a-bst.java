@@ -41,11 +41,18 @@ class Solution {
             } else {
                 // case3:two child
                 // we are find two way(inorder successor and inorder preccessor)
+                /*This is using the Inorder Preccessor
                 TreeNode inorderPreccessor = findPrecessor(root.left);
                 // shift the node in root
                 root.val = inorderPreccessor.val;
                 // delete inorderPreccessor.val
-               root.left= deleteNode(root.left, inorderPreccessor.val);
+                root.left = deleteNode(root.left, inorderPreccessor.val);*/
+                /**This is using The inorder successor */
+                TreeNode inorderSuccessor = findSuccessor(root.right);
+                // shift the node in root
+                root.val = inorderSuccessor.val;
+                // delete inorderPreccessor.val
+                root.right = deleteNode(root.right, inorderSuccessor.val); 
 
             }
         }
@@ -53,6 +60,7 @@ class Solution {
         return root;
     }
 
+    // inorder preccessor
     private TreeNode findPrecessor(TreeNode root) {
         while (root.right != null) {
             root = root.right;
@@ -60,4 +68,14 @@ class Solution {
         }
         return root;
     }
+
+    // inorder successor
+    private TreeNode findSuccessor(TreeNode root){
+        while(root.left!=null){
+            root=root.left;
+
+        }
+        return root;
+    }
+
 }
