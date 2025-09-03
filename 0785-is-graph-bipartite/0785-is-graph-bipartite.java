@@ -1,12 +1,12 @@
 class Solution {
-    List<List<Integer>> adj;
 
     public boolean isBipartite(int[][] graph) {
         // Code here
+        /*Bfs 
         int V = graph.length;
         int color[] = new int[V];
         Arrays.fill(color, -1);
-
+        
         for (int i = 0; i < V; i++) {
             if (color[i] == -1) {
                 if (!colorBfs(i, graph, color)) {
@@ -14,10 +14,24 @@ class Solution {
                 }
             }
         }
+        return true;*/
+
+        /*Dfs*/
+        int V = graph.length;
+        int color[] = new int[V];
+        Arrays.fill(color, -1);
+
+        for (int i = 0; i < V; i++) {
+            if (color[i] == -1) {
+                if (!colorDfs(i, graph, color)) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
-    //create an function for bfs call ( coding methods ) 
+    //create an function for bfs call  
     private boolean colorBfs(int src, int edges[][], int[] color) {
         Queue<Integer> q = new LinkedList<>();
         q.add(src);
@@ -36,6 +50,32 @@ class Solution {
                 }
             }
         }
+        return true;
+    }
+
+    //by using to dfs 
+
+    private boolean colorDfs(int node, int[][] graph, int[] color) {
+        // node is being visited → if not colored, set initial color
+        if (color[node] == -1) {
+            color[node] = 0;
+        }
+
+        //visit all the neighbour
+        for (int neighbour : graph[node]) {
+            if (color[neighbour] == -1) {
+                // Assign opposite color to neighbour
+                color[neighbour] = 1 - color[node];
+                if (!colorDfs(neighbour, graph, color)) {
+                    return false;
+                }
+                // Found same color on both sides → not bipartite
+            } else if (color[neighbour] == color[node]) {
+                return false;
+            }
+
+        }
+
         return true;
     }
 
