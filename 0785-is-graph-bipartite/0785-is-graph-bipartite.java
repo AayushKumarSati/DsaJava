@@ -1,4 +1,6 @@
 class Solution {
+    List<List<Integer>> adj;
+
     public boolean isBipartite(int[][] graph) {
         // Code here
         int V = graph.length;
@@ -15,7 +17,7 @@ class Solution {
         return true;
     }
 
-    //create an function for bfs call 
+    //create an function for bfs call ( coding methods ) 
     private boolean colorBfs(int src, int edges[][], int[] color) {
         Queue<Integer> q = new LinkedList<>();
         q.add(src);
@@ -36,4 +38,5 @@ class Solution {
         }
         return true;
     }
+
 }
