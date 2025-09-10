@@ -10,13 +10,16 @@ class Solution {
 
         r = grid.length;
         c = grid[0].length;
-        Queue<int[]> q = new LinkedList<>();
+        // Queue<int[]> q = new LinkedList<>();//for bfs
         int island = 0;
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
                 if (grid[i][j] == '1') {
+                    // island++;
+                    // bfsCall(grid, i, j);
+                    //dfs call
+                    dfsCall(grid, i, j);
                     island++;
-                    bfsCall(grid, i, j);
                 }
 
             }
@@ -55,5 +58,29 @@ class Solution {
 
         }
 
+    }
+
+    //by using the dfs 
+    private void dfsCall(char[][] grid, int i, int j) {
+        //check validation
+        if (!valid(i,j)) {
+            return;
+        }
+        //check visited or not 
+        if (grid[i][j] == '0') {
+            return;
+        }
+        grid[i][j] = '0';
+
+        //now start dfs call for all direction
+        int row[] = { -1, 1, 0, 0 };
+        int col[] = { 0, 0, -1, 1 };
+
+        for (int k = 0; k < 4; k++) {
+            int newrow = i + row[k];
+            int newcol = j + col[k];
+
+            dfsCall(grid, newrow, newcol);
+        }
     }
 }
