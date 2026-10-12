@@ -54,15 +54,32 @@ class Solution {
         if (s.length() != t.length()) {
             return false;
         }
-        // convert string into character array
-        char[] arr1 = s.toCharArray();
-        char[] arr2 = t.toCharArray();
+        // // convert string into character array
+        // char[] arr1 = s.toCharArray();
+        // char[] arr2 = t.toCharArray();
 
-        // sort the both arrays
-        Arrays.sort(arr1);
-        Arrays.sort(arr2);
-        // check the sorted arrays are equals or not
-        return Arrays.equals(arr1, arr2);
+        // // sort the both arrays
+        // Arrays.sort(arr1);
+        // Arrays.sort(arr2);
+        // // check the sorted arrays are equals or not
+        // return Arrays.equals(arr1, arr2);
+
+        //by using frequency maps O(N) and space : O(N) 
+
+        int freq[]=new int [26];
+
+        for(int i=0; i<s.length(); i++){
+            freq[s.charAt(i)-'a']++;
+            freq[t.charAt(i)-'a']--;
+
+        }
+        //count freq
+        for(int count:freq){
+            if(count!=0){
+                return false;
+            }
+        }
+        return true;
 
     }
 }
